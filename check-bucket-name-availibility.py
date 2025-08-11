@@ -70,13 +70,13 @@ def check_bucket_availability(bucket_names: List[str], client: storage.Client = 
                 print(f'"{bucket_name}" = available')
                 logger.debug(f"Bucket {bucket_name} is available")
             except Forbidden:
-                print(f'"{bucket_name}" = unknown (permission denied)')
+                print(f'"{bucket_name}" = not available')
                 logger.warning(f"Permission denied for bucket {bucket_name}")
             except GoogleAPIError as e:
-                print(f'"{bucket_name}" = check failed (API error)")
+                print(f'"{bucket_name}" = not available')
                 logger.error(f"API error checking bucket {bucket_name}: {e}")
             except Exception as e:
-                print(f'"{bucket_name}" = check failed (unexpected error)")
+                print(f'"{bucket_name}" = check failed (not available)')
                 logger.error(f"Unexpected error checking bucket {bucket_name}: {e}")
 
 
